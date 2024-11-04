@@ -1,0 +1,78 @@
+syntax = "proto3";
+
+package contract.v1;
+
+import "google/protobuf/duration.proto";
+
+option go_package = "github.com/TheUnitedCoders/devpost-auth0-api-gateway/pkg/pb/contract/v1;provider";
+
+service ProviderService {
+  rpc Description(DescriptionRequest) returns (DescriptionResponse);
+  rpc Process(ProcessRequest) returns (ProcessResponse);
+}
+
+enum HttpMethod {
+  HTTP_METHOD_UNSPECIFIED = 0;
+  HTTP_METHOD_GET = 1;
+  HTTP_METHOD_PUT = 2;
+  HTTP_METHOD_POST = 3;
+  HTTP_METHOD_DELETE = 4;
+  HTTP_METHOD_PATCH = 5;
+}
+
+enum RateLimitBy {
+  RATE_LIMIT_BY_UNSPECIFIED = 0;
+  RATE_LIMIT_BY_IP = 2;
+  RATE_LIMIT_BY_SUBJECT_ID = 3;
+}
+
+message RateLimiter {
+  RateLimitBy by = 1;
+  uint64 limit = 2;
+  uint64 burst = 3;
+  google.protobuf.Duration period = 4;
+}
+
+message DescriptionRequest {}
+
+message DescriptionResponse {
+  bool audit_enabled = 1;
+  bool required_authentication = 3;
+  RateLimiter rate_limiter = 4;
+  repeated string required_permissions = 5;
+  repeated DescriptionMethod methods = 6;
+}
+
+message DescriptionMethod {
+  string method = 1;
+  bool audit_enabled = 2;
+  bool required_authentication = 4;
+  RateLimiter rate_limiter = 5;
+  repeated string required_permissions = 6;
+  repeated HttpMethod allowed_http_methods = 7;
+}
+
+message SubjectInformation {
+  string id = 1;
+  repeated string permissions = 2;
+}
+
+message ProcessRequest {
+  string api_method = 1;
+  HttpMethod http_method = 2;
+  string path = 3;
+  string query = 4;
+  bytes body = 5;
+  map<string, HeaderValue> headers = 6;
+  SubjectInformation subject_information = 7;
+}
+
+message ProcessResponse {
+  bytes body = 1;
+  uint32 status_code = 2;
+  map<string, HeaderValue> headers = 3;
+}
+
+message HeaderValue {
+  repeated string values = 1;
+}
