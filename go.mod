@@ -11,7 +11,7 @@ require (
 	github.com/go-redis/redis_rate/v10 v10.0.1
 	github.com/grpc-ecosystem/go-grpc-middleware/providers/prometheus v1.0.1
 	github.com/prometheus/client_golang v1.20.5
-	github.com/redis/go-redis/v9 v9.0.2
+	github.com/redis/go-redis/v9 v9.7.0
 	github.com/stretchr/testify v1.9.0
 	golang.org/x/sync v0.8.0
 	google.golang.org/grpc v1.67.1
