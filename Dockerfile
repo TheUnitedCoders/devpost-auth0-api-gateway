@@ -13,9 +13,8 @@ FROM debian:bookworm-slim
 
 RUN apt-get update && apt-get install ca-certificates -y && update-ca-certificates
 
-COPY --from=builder /app/gateway /app/gateway
+COPY --from=builder /app/gateway /gateway
 
-WORKDIR /app
 EXPOSE 7070
 
-CMD ["./gateway"]
+ENTRYPOINT ["./gateway"]
