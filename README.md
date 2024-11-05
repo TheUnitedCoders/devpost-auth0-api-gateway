@@ -61,8 +61,9 @@ Developers can leverage a ready-to-use Go SDK with detailed documentation and co
         }
     ]
 }
-
 ```
+
+Please note that JSON format does not support comments, so any lines starting with `//` are only meant as hints to explain each field. Be sure to remove these comments before using the configuration file to avoid errors.
 
 ### Launching Redis to Support the API Gateway
 
