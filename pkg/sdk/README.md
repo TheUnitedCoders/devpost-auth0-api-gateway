@@ -20,14 +20,14 @@ s, err := sdk.New(sdk.NewOptions{
       AuditEnabled:           true,
       RequiredAuthentication: true,
     },
-  })
-  if err != nil {
-    slog.Error("Failed to init SDK", slog.String("error", err.Error()))
+})
+if err != nil {
+	slog.Error("Failed to init SDK", slog.String("error", err.Error()))
     return
-  }
+}
 ```
 
-2. Registering Handlers
+2. Register method handlers with specific settings for each method:
 ```go
 err := s.RegisterHandler(sdk.Handler{
     Method: "handler",
