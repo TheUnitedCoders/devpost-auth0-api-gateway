@@ -42,7 +42,7 @@ Developers can leverage a ready-to-use Go SDK with detailed documentation and co
 
 ### Configuring the API Gateway
 
-Create a configuration file config.json specifying all the necessary parameters for launching the API Gateway
+Create a configuration file config.json specifying all the necessary parameters for launching the API Gateway.
 
 ```json
 {
