@@ -40,7 +40,10 @@ Developers can leverage a ready-to-use Go SDK with detailed documentation and co
 
 ## Installation and usage guide
 
-### Create a configuration file config.json specifying all the necessary parameters for launching the API Gateway
+### Configuring the API Gateway
+
+Create a configuration file config.json specifying all the necessary parameters for launching the API Gateway
+
 ```json
 {
     "public_listen_address": ":7070", // Port for public request (Default: “:7070”)
